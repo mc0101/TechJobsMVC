@@ -1,6 +1,6 @@
 ﻿<h1>@ViewBag.title</h1>
 
-<form action="/Search/Results">
+<form method="post" action="/Search/Results">
     <h2>Search by:</h2>
 
     <p>
@@ -29,8 +29,26 @@
 
 @if (ViewBag.jobs != null)
 {
-
+    <a asp-controller="Search" asp-action="Results" />
     <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-    // TODO #2 - Loop over jobs dictionary and display all job fields 
+    @foreach (var job in ViewBag.jobs)
+    {
+    <table class="job-listing">
+        
+        <tr><td>Name:</td> <td>@job["name"]</td></tr>
+        
+        <tr><td>Employer:</td> <td>@job["employer"]</td></tr>
+        
+        <tr><td>Location:</td> <td>@job["location"]</td></tr>
+        
+        <tr><td>Position Type:</td> <td>@job["position type"]</td></tr>
+        
+        <tr><td>Core Competency:</td> <td>@job["core competency"]</td></tr>
+        
+        
+    </table>
+   
+       
+    }
 }
